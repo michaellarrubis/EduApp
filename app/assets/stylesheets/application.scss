@@ -1,0 +1,69 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require material_icons
+ *= require trix
+ *= require jquery.rateyo.min
+ *= require_tree .
+ *= require_self
+ */
+
+@import 'materialize';
+$primary-color: color("blue", "lighten-2") !default;
+$secondary-color: color("yellow", "base") !default;
+
+i.xx-large { font-size: 13rem; }
+.btn-block { width: 100% !important; }
+.description { font-size: 20px; }
+.x-small-square { width: 30px; height: 30px; }
+.small-square { width: 60px; height: 60px; }
+.large-square { width: 100px; height: 100px; }
+.x-large-square { width: 150px; height: 150px; }
+.x-small { font-size: 1rem; }
+.strong { font-weight: bold; }
+.m-t-30 { margin-top: 30px; }
+.m-b-20 { margin-bottom: 20px; }
+.cust-center { margin: 0 auto; }
+.hidden { display:none; }
+.content-container { padding: 0 10px; border-left: 3px solid #eee; margin-left: 20px; word-wrap: break-word;}
+.review-container { 
+	margin-bottom: 20px;
+	border-bottom: 1px dotted #eee;
+	padding-bottom: 20px;
+	&:last-child{
+		border-bottom: none;
+	}
+}
+.student-container { 
+	display: inline-flex; 
+	& .student-name {
+		padding: 0 10px;
+		font-weight: bold;
+		font-size: 20px;
+	}
+	& .timestamp {
+		padding: 4px 0;
+	}
+}
+
+/* Fix for the Checkbox Conflict*/
+.fixed {
+  [type="checkbox"], [type="radio"]{
+    + label {   
+      pointer-events: auto;
+    }
+  }
+}
+.checkbox-orange[type="checkbox"].filled-in:checked + label:after{
+     border: 2px solid #ff9800;
+     background-color: #ff9800;
+}

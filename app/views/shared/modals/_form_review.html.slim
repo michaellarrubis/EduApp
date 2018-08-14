@@ -1,0 +1,9 @@
+#new_review.modal
+	.modal-content
+		h5
+			span.light
+				| Writing a review for 
+			| #{@professor.name}.
+		= render partial: "reviews/form"
+	.modal-footer
+		= link_to "Cancel", professor_path(@professor.id), class: "modal-action modal-close waves-effect waves-orange btn-flat"

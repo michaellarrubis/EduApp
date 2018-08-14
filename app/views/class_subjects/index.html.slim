@@ -1,0 +1,16 @@
+- provide(:title, "All Class Subjects")
+= render partial: "shared/navbar"
+
+.container
+  h5.light #{@class_subjects.count} Classes
+  .row
+    - @class_subjects.each do |class_subject|
+      .col.s12.m4
+        = link_to controller: "class_subjects", action: "show", id: class_subject.id do
+          .card
+            .card-content.center
+              .btn.z-depth-0.green
+                = class_subject.class_code
+              p.black-text
+                = class_subject.class_name
+= render partial: "shared/footer"

@@ -1,0 +1,9 @@
+-provide(:title, "New Professor")
+= render partial: "shared/navbar"
+.row
+	.col.s12.m6.offset-m3
+		h4.light Add New Professor
+		.card
+			.card-content
+				= render "form", professor: @professor
+= render partial: "shared/footer"

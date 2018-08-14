@@ -1,0 +1,60 @@
+= render partial: "shared/navbar"
+
+<!-- Professors List -->
+.container
+	h5.light 
+		| #{@professors.count} Professors
+		small
+			= link_to " (See all)", professors_path
+	- if @professors.empty?
+	    = empty_query
+	    .center
+		    - if current_user.admin?
+		    	= link_to " Add Now", new_professor_path, class: "btn blue"
+	.row
+		- @professors.each do |professor|
+			.col.s12.m3
+				= link_to professor do
+					.card
+						.card-content.center
+							= image_tag "professor.png", class: "responsive-img circle small-square"
+							br
+							p.strong.black-text
+								| #{professor.title} #{professor.name}
+							br
+							- rating_ave = get_ratings(professor.id)
+							- unrated = 5 - rating_ave
+							- rating_ave.times do
+								i.material-icons.orange-text star
+							- unrated.times do
+								i.material-icons.orange-text star_border
+							br
+							.grey-text
+								|  #{review_counter_for_professor(professor.id)}
+						.card-actions
+							.btn.green.btn-block
+								| #{professor.class_subjects.count} Classes
+
+<!-- Subjects List -->
+.container
+	h5.light 
+		| #{@class_subjects.count} Subjects
+		small
+			= link_to " (See all)", classes_path
+
+	- if @class_subjects.empty?
+	    h5.light.grey-text.center.m-b-20
+	      | #{empty_query}
+      
+	.row
+		- @class_subjects.each do |class_subject|
+			.col.s12.m4.center
+				= link_to class_subject do
+					.card
+						.card-content.center
+							.btn.z-depth-0.green
+								= class_subject.class_code
+							p.black-text
+								= class_subject.class_name
+
+= render partial: "shared/footer"

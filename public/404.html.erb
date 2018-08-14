@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Not Found - EduApp</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1"> 
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>  
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m6 offset-m3">
+        <div class="card">
+          <div class="card-content center">
+            <h2 class="light">
+              Nothing to see here!
+            </h2>
+            <span class="card-title">
+              Perhaps <%= link_to "click here", root_path %>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<%= render partial: "shared/footer" %>
+
+</body> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+</html>

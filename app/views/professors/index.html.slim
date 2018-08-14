@@ -1,0 +1,37 @@
+= render partial: "shared/navbar"
+.container
+  h5.light 
+    | #{@professors.count} Professors 
+    - if current_user.admin?
+      small
+        = link_to new_professor_path, class: "btn-floating btn-large waves-effect waves-light orange" do
+          i.material-icons add
+
+  - if @professors.empty?
+    = empty_query
+
+  .row
+    - @professors.each do |professor|
+      .col.s12.m3
+        = link_to professor do
+          .card
+            .card-content.center
+              = image_tag "professor.png", class: "responsive-img circle small-square border-3"
+              br
+              p.strong.black-text
+                | #{professor.title} #{professor.name}
+              br
+              - rating_ave = get_ratings(professor.id)
+              - unrated = 5 - rating_ave
+              - rating_ave.times do
+                i.material-icons.orange-text star
+              - unrated.times do
+                i.material-icons.orange-text star_border
+              br
+              .grey-text
+                |  #{review_counter_for_professor(professor.id)}
+              br
+            .card-actions
+              .btn.green.btn-block
+                | #{professor.class_subjects.count} Classes
+= render partial: "shared/footer"

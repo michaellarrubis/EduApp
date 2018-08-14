@@ -1,0 +1,11 @@
+= form_with(model: @review, local: true) do |form|
+  .input-field
+    = form.hidden_field :user_id, value: current_user.id
+    = form.hidden_field :professor_id, value: @professor.id
+
+  .input-field.col.s12.m-b-20.m-t-30
+    = form.label :content, style: "margin-top: -40px"
+    = form.trix_editor :content, id: :review_content
+
+  br
+  = form.submit class: "btn orange btn-block z-depth-0"

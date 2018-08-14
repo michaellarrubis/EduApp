@@ -1,0 +1,76 @@
+- provide(:title, @professor.name)
+= render partial: "shared/navbar"
+.container
+	.card
+		.card-content
+			.row
+				.col.s12.m4.center
+					= image_tag "professor.png", class: "responsive-img circle x-large-square"
+					br
+					input[id="professor_id" value="#{@professor.id}" class="hidden"]
+					input[id="user_id" value="#{current_user.id}" class="hidden"]
+					- if @ratings.count == 0
+						#rateYo.cust-center
+						input[id="rating_id" value="0" class="hidden"]
+						input[id="current_rating" value="0" class="hidden"]
+					- else
+						- @ratings.each do |r|
+							#rateYo.cust-center
+							input[id="current_rating" value="#{r.rate}" class="hidden"]
+							input[id="rating_id" value="#{r.id}" class="hidden"]
+					br
+					.grey-text
+						| #{review_counter(@reviews.count)}
+					br
+					= link_to "Leave a Review ", "#new_review", class: "grey-text modal-trigger"
+					- if current_user.admin?
+						br
+						= link_to "Edit | ", edit_professor_path(@professor), class: "grey-text"
+						= link_to "Delete", @professor, method: :delete, data: { confirm: 'Are you sure?' }, class: "grey-text"
+				= render partial: "shared/modals/form_review", professor: @professor
+				.col.s12.m8
+					h4.light
+						| #{@professor.title} #{@professor.name}
+					.content-container
+						= raw @professor.description
+
+	h3.orange-text.light.center CLASSES
+	- if @professor.class_subjects.count == 0
+		= empty_query
+	- else
+		.row
+		    - @professor.class_subjects.each do |class_subject|
+		    	.col.s12.m3
+		    		= link_to controller: "class_subjects", action: "show", id: class_subject.id do
+		    			.card
+		    				.card-content.center
+		    					.btn.z-depth-0.green
+		    						= class_subject.class_code
+		    					p.black-text
+		    						= class_subject.class_name
+
+	.card
+		.card-content
+			h3.orange-text.light.center REVIEWS
+			.center.m-b-20
+				= link_to "Leave a Review ", "#new_review", class: "grey-text modal-trigger"
+			- if @reviews.count == 0
+				= empty_query
+			- else
+				- @reviews.each do |review|
+					.review-container
+						.student-container
+							.student-image
+								= image_tag "professor.png", class: "responsive-img circle x-small-square"
+							.student-name
+								span 
+									| #{get_username_from_email(review.user.email)}
+							.timestamp
+								small.grey-text 
+									| #{ time_ago_in_words(review.created_at) } ago  
+									- if current_user.admin? && review.professor.id == @professor.id
+										= link_to "Delete", review, method: :delete, data: { confirm: 'Are you sure?' }
+						.content-container
+							| #{raw review.content}
+
+= render partial: "shared/footer"

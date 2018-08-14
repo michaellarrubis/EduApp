@@ -1,0 +1,11 @@
+- provide(:title, "Nothing to view here")
+.container
+	.row
+		.col.s12.m6.offset-m3
+			br
+			.card
+				.card-content
+					h3.light.center
+						| Nothing to Display Here
+					= link_to "Click here instead", all_path, class: "btn green btn-block z-depth-0"
+= render partial: "shared/footer"

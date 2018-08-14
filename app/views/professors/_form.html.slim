@@ -1,0 +1,24 @@
+= form_with(model: professor, local: true) do |form|
+
+  .input-field.col.s12
+    = form.label :name
+    = form.text_field :name, id: :professor_name, class: "center"
+
+  .input-field.col.s12
+    = form.label :title
+    = form.text_field :title, id: :professor_title, class: "center"
+  br
+  .input-field.col.s12.m-b-20.m-t-30
+    = form.label :description, style: "margin-top: -40px"
+    = form.trix_editor :description, id: :professor_description
+  br
+  
+  br 
+  .input-field.col.s12.m-b-20.m-t-30.fixed
+    = form.label "Classes to Teach", style: "margin-top: -40px"
+    = form.collection_check_boxes(:class_subject_ids, ClassSubject.all, :id, :class_code_and_name) do |class_subject|
+      div
+        = class_subject.check_box class: "filled-in checkbox-orange"
+        = class_subject.label
+
+  = form.submit "Submit", class: "btn blue btn-block z-depth-0",  data: {disable_with: "Submitting..."}

@@ -1,0 +1,42 @@
+= render partial: "shared/navbar"
+
+.container
+	.row
+		.col.s12.m4
+			.card
+				.card-content.center
+					h5.light.orange-text Class
+					h3
+						= @class_subject.class_code
+					h4.light
+						= @class_subject.class_name
+				.card-actions
+					= link_to "View All", classes_path, class: "btn green btn-block z-depth-0"
+		.col.s12.m8
+			- if @class_subject.professors.empty?
+				.m-t-30
+					= empty_query
+			- else
+				- @class_subject.professors.each do |professor|
+					= link_to professor do
+						.card
+							.card-content.black-text
+								.row
+									.col.s12.m4.center
+										= image_tag "professor.png", class: "responsive-img circle x-large-square"
+										br
+										- rating_ave = get_ratings(professor.id)
+										- unrated = 5 - rating_ave
+										- rating_ave.times do
+											i.material-icons.orange-text star
+										- unrated.times do
+											i.material-icons.orange-text star_border
+										br
+										.grey-text
+											| #{review_counter_for_professor(professor.id)}
+									.col.s12.m8
+										h4.light #{professor.title} #{professor.name}
+										.content-container
+											= raw professor.description
+
+= render partial: "shared/footer"

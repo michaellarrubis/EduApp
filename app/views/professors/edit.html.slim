@@ -1,0 +1,11 @@
+-provide(:title, "Editing Professor")
+= render partial: "shared/navbar"
+
+.row
+	.col.s12.m6.offset-m3
+		h4.light Edit Professor
+		.card
+			.card-content
+				= render "form", professor: @professor
+		= link_to "Cancel", @professor
+= render partial: "shared/footer"
