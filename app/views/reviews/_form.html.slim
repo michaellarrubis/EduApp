@@ -5,7 +5,7 @@
 
   .input-field.col.s12.m-b-20.m-t-30
     = form.label :content, style: "margin-top: -40px"
-    = form.trix_editor :content, id: :review_content
+    = form.text_area :content, id: :review_content, class: "materialize-textarea"
 
   br
   = form.submit class: "btn orange btn-block z-depth-0"

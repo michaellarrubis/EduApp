@@ -10,7 +10,7 @@
   br
   .input-field.col.s12.m-b-20.m-t-30
     = form.label :description, style: "margin-top: -40px"
-    = form.trix_editor :description, id: :professor_description
+    = form.text_area :description, id: :professor_description, class: "materialize-textarea"
   br
   
   br 

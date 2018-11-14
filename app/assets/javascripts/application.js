@@ -1,7 +1,6 @@
 //= require jquery
 //= require rails-ujs
 //= require materialize
-//= require trix
 //= require jquery.rateyo.min
 //= require jquery.turbolinks
 //= require turbolinks-compatibility
@@ -29,10 +28,10 @@ $(document).on('turbolinks:load', function(){
  			
  			fullStar: true,
  			onSet: function (rating, rateYoInstance) { 
-		      	var rating = rating;
-	            var professor_id = $("#professor_id").val(); 
-	            var user_id = $("#user_id").val();
-	            var rating_id = $("#rating_id").val();
+		      	let rating = rating;
+	            let professor_id = $("#professor_id").val(); 
+	            let user_id = $("#user_id").val();
+	            let rating_id = $("#rating_id").val();
 	            if (rating_id == 0){
 	            	$.ajax({
 				      	type: "POST",
